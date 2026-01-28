@@ -1,0 +1,18 @@
+title: "TEMPLATE - <Rule Name>"
+id: "<uuid>"
+status: experimental
+description: "Detects <behavior> indicative of <threat>."
+author: "Josh"
+date: "YYYY-MM-DD"
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    Image|endswith: '\powershell.exe'
+  condition: selection
+falsepositives:
+  - "Administrative scripts"
+level: medium
+tags:
+  - attack.t1059
