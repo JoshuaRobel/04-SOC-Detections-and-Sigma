@@ -1,0 +1,26 @@
+title: Suspicious Encoded PowerShell Execution
+id: 7c2a0b19-2222-4d8f-bbbb-556677889900
+status: experimental
+description: Detects PowerShell execution with encoded command parameter which may indicate obfuscated malware activity.
+author: Joshua Robel
+date: 2026/02/15
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4688
+    NewProcessName|endswith: '\powershell.exe'
+    CommandLine|contains: '-enc'
+  condition: selection
+fields:
+  - CommandLine
+  - ParentProcessName
+  - SubjectUserName
+falsepositives:
+  - Administrative scripts
+  - Configuration management tools
+level: high
+tags:
+  - attack.execution
+  - attack.t1059
