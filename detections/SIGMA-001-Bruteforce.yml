@@ -1,0 +1,25 @@
+title: Excessive Failed Logons
+id: 8f4b1e40-1111-4f9c-aaaa-001122334455
+status: experimental
+description: Detects excessive Windows failed logon attempts indicating potential brute force attack.
+author: Joshua Robel
+date: 2026/02/15
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4625
+  timeframe: 5m
+  condition: selection | count() by TargetUserName > 20
+fields:
+  - TargetUserName
+  - IpAddress
+  - LogonType
+falsepositives:
+  - User mistyping password
+  - Expired credentials
+level: high
+tags:
+  - attack.credential_access
+  - attack.t1110
