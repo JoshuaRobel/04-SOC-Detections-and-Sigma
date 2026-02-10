@@ -1,0 +1,24 @@
+title: Domain Admin Group Membership Addition
+id: 1f3d6c88-3333-4aaa-cccc-998877665544
+status: experimental
+description: Detects addition of user account to Domain Admins group.
+author: Joshua Robel
+date: 2026/02/15
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4728
+    TargetUserName|contains: 'Domain Admins'
+  condition: selection
+fields:
+  - SubjectUserName
+  - MemberName
+  - TargetUserName
+falsepositives:
+  - Approved IT change
+level: high
+tags:
+  - attack.privilege_escalation
+  - attack.t1078
