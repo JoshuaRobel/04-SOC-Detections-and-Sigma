@@ -1,35 +1,43 @@
-# 04 — SOC Detections and Sigma (Detection Engineering)
+# 04 — SOC Detections & Sigma
+## Detection Engineering Simulation (Sigma + Splunk)
 
-> **Goal:** Build SOC Level 1 job-ready evidence — alert triage, investigation, documentation, and escalation decisions.
+This repository demonstrates enterprise detection engineering practices using Sigma rules aligned with MITRE ATT&CK.
 
-## What this repo shows
-- Practical SOC workflow (monitor → triage → investigate → enrich → document → escalate/close)
-- Repeatable templates/playbooks
-- Evidence artifacts (screenshots, logs, queries, timelines)
+Each detection includes:
 
-## Quick links
-- 📁 Investigations: `./investigations/`
-- 🧭 Playbooks: `./playbooks/`
-- 🧾 IOC Lists: `./iocs/`
+- Sigma rule logic
+- ATT&CK technique mapping
+- False positive considerations
+- Tuning strategy
+- SPL conversion for Splunk
+- Testing and validation notes
 
-## Scope
-- Build and document Sigma rules aligned to SOC detection needs
-- Map each rule to MITRE ATT&CK
-- Provide: required log sources, expected false positives, and tuning notes
-- Include investigation guidance for analysts
+---
 
-## Rule format (per rule)
-Each rule should include:
-- Purpose + threat description
-- Required telemetry
+# 🎯 Objectives
+
+- Demonstrate understanding of rule-based detection
+- Show ability to reduce false positives
+- Map detections to MITRE ATT&CK
+- Translate Sigma logic into Splunk SPL
+- Document testing and validation process
+
+---
+
+# 🔎 Detection Index
+
+| ID | Detection | ATT&CK | Status |
+|----|----------|--------|--------|
+| SIGMA-001 | Excessive Failed Logons | T1110 | Validated |
+| SIGMA-002 | Encoded PowerShell Execution | T1059 | Validated |
+| SIGMA-003 | Domain Admin Group Addition | T1078 | Validated |
+
+---
+
+# 🧠 Skills Demonstrated
+
+- Detection rule development
 - ATT&CK mapping
-- Example triggering event (or test log)
-- Common false positives
-- Tuning ideas
-- Investigation steps
-
-## Folder guide
-- `./rules/` → Sigma rules
-- `./samples/` → example events/log snippets
-- `./investigation-guides/` → “what to do when it fires”
-
+- Enterprise alert tuning
+- SOC alert lifecycle awareness
+- SPL query validation
