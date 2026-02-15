@@ -1,43 +1,74 @@
-# 04 — SOC Detections & Sigma
-## Detection Engineering Simulation (Sigma + Splunk)
+# 04 — SOC Detections & Sigma Rules
 
-This repository demonstrates enterprise detection engineering practices using Sigma rules aligned with MITRE ATT&CK.
+**Detection Engineering Repository**
+
+This repository contains production-ready Sigma rules mapped to MITRE ATT&CK, with testing notes, tuning guidance, and Splunk SPL conversions.
+
+---
+
+## Detection Index
+
+| ID | Detection | ATT&CK | Data Source | Status |
+|----|-----------|--------|-------------|--------|
+| [SIGMA-001](./detections/SIGMA-001.md) | Excessive Failed Logons | T1110.001 | Windows Security Log | ✅ Validated |
+| [SIGMA-002](./detections/SIGMA-002.md) | Encoded PowerShell Execution | T1059.001 | Windows Sysmon | ✅ Validated |
+| [SIGMA-003](./detections/SIGMA-003.md) | Domain Admin Group Addition | T1098 | Windows Security Log | ✅ Validated |
+| [SIGMA-004](./detections/SIGMA-004.md) | Suspicious LSASS Access | T1003.001 | Windows Sysmon | 🚧 Testing |
+| [SIGMA-005](./detections/SIGMA-005.md) | WMI Event Subscription | T1546.003 | Windows Sysmon | 🚧 Testing |
+
+---
+
+## Repository Structure
+
+```
+04-SOC-Detections-and-Sigma/
+├── detections/           # Individual detection docs
+│   ├── SIGMA-001.md
+│   ├── SIGMA-002.md
+│   └── ...
+├── sigma-rules/          # Raw .yml files
+│   ├── excessive_failed_logons.yml
+│   ├── encoded_powershell.yml
+│   └── ...
+├── testing-notes/        # Validation results
+│   ├── SIGMA-001-testing.md
+│   └── ...
+└── README.md            # This file
+```
+
+---
+
+## Skills Demonstrated
+
+- Detection rule development (Sigma format)
+- MITRE ATT&CK technique mapping
+- Log source identification
+- False positive management
+- SPL query translation
+- Alert tuning and threshold optimization
+
+---
+
+## Quick Reference: Sigma to Splunk
+
+| Sigma Field | Splunk Equivalent |
+|-------------|-------------------|
+| `logsource` | `sourcetype` or `source` |
+| `selection` | `where` clause |
+| `keywords` | `search` terms |
+| `condition` | Boolean logic |
+
+---
+
+## Testing Methodology
 
 Each detection includes:
-
-- Sigma rule logic
-- ATT&CK technique mapping
-- False positive considerations
-- Tuning strategy
-- SPL conversion for Splunk
-- Testing and validation notes
+1. **Baseline period** (7 days) — understand normal
+2. **Test deployment** — alert-only mode
+3. **FP analysis** — tune thresholds
+4. **Production** — enforce with playbook
 
 ---
 
-# 🎯 Objectives
-
-- Demonstrate understanding of rule-based detection
-- Show ability to reduce false positives
-- Map detections to MITRE ATT&CK
-- Translate Sigma logic into Splunk SPL
-- Document testing and validation process
-
----
-
-# 🔎 Detection Index
-
-| ID | Detection | ATT&CK | Status |
-|----|----------|--------|--------|
-| SIGMA-001 | Excessive Failed Logons | T1110 | Validated |
-| SIGMA-002 | Encoded PowerShell Execution | T1059 | Validated |
-| SIGMA-003 | Domain Admin Group Addition | T1078 | Validated |
-
----
-
-# 🧠 Skills Demonstrated
-
-- Detection rule development
-- ATT&CK mapping
-- Enterprise alert tuning
-- SOC alert lifecycle awareness
-- SPL query validation
+**Analyst:** Joshua Robel  
+**Last Updated:** 2026-02-15
